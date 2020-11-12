@@ -3,18 +3,27 @@ shiny for Global Dynamic Asset Allocation
 
 To run the project either fork/download the files and run the **app.R**-file, or in R run
 ```{r}
-shiny::runGitHub('GDAA', 'hyunyulhenry')
+shiny::runGitHub('GDAA_dashboard', 'hyunyulhenry')
 ```
 In order to run the project properly, you need to have the following packages installed.
 
-To install all packages you can also use
+Required package
 ```{r}
-pkg = c('shiny', 'DT', 'quadprog', 'highcharter', 'quantmod', 'PerformanceAnalytics',
-        'shinythemes', 'knitr', 'kableExtra', 'magrittr', 'shinyWidgets',
-        'lubridate', 'stringr', 'dplyr', 'tidyr', 'plotly', 'tibble')
-
-new.pkg = pkg[!(pkg %in% installed.packages()[, "Package"])]
-if (length(new.pkg))
-  install.packages(new.pkg, dependencies = TRUE)
-sapply(pkg, require, character.only = TRUE)
+library(DT)
+library(quadprog)
+library(quantmod)
+library(PerformanceAnalytics)
+library(knitr)
+library(kableExtra)
+library(magrittr)
+library(shinyWidgets)
+library(lubridate)
+library(stringr)
+library(dplyr)
+library(tidyr)
+library(tibble)
+library(shiny)
+library(plotly)
+library(shinydashboard)
+library(shinycssloaders)
 ```
