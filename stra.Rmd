@@ -1,0 +1,21 @@
+---
+output: html_document
+---
+
+**Global Dynamic Asset Allocation**
+- Strategy to perform asset allocation using momentum
+- Invested in top 5 assets, which were among the top 10 global assets
+- Calculate momentum indices using returns from 3 months to 12 months
+
+**Weight of each asset**
+- Variance of the portfolio is minimized
+- The sum of the total weights is 1
+- At least 10% and maximum 30% for each category to prevent corner solution
+
+**ETC**
+- Use a adjusted stock price that includes dividends
+- Buy / sell commission 30bp
+- Rebalancing by the end of the month
+
+**Universe**
+
