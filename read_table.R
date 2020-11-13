@@ -45,6 +45,26 @@ output$return_table = DT::renderDataTable({
               )
 })
 
+output$return_daily_table = DT::renderDataTable({
+  
+  req(input$tz)
+  
+  t1 = input$date[[1]] %>% as.character()
+  t2 = input$date[[2]] %>% as.character()
+  
+  df = data$net[paste0(t1, "::", t2)]
+  
+  df %>%
+    fortify.zoo() %>%
+    mutate(Returns = multiply_by(round(Returns, 4), 100)) %>%
+    arrange(desc(Index)) %>%
+    set_colnames(c('Date', 'Return (%)')) %>%
+    datatable(rownames = FALSE, extensions = 'Buttons',
+              options = list(dom = 'tB',
+                             buttons = c('copy', 'csv', 'excel'),
+                             pageLength = 1000000)
+    )
+})
 
 output$wts_table = DT::renderDataTable({
   
@@ -58,6 +78,24 @@ output$wts_table = DT::renderDataTable({
     )
               
 })
+
+output$to_table = DT::renderDataTable({
+  
+  data$turover %>% 
+    apply.monthly(., Return.cumulative) %>%
+    fortify.zoo() %>%
+    set_names(c('Date', 'Turnover (%)')) %>%
+    mutate_if(is.numeric, list(~round(., 4) * 100)) %>%
+    arrange(desc(Date))  %>%
+    datatable(rownames = FALSE, 
+              options = list(dom = 't',
+                             buttons = c('copy', 'csv', 'excel'),
+                             pageLength = 1000000)
+    )
+  
+})
+
+
 
 output$raw_data = function() {
   

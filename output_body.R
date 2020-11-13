@@ -41,15 +41,26 @@ dashboardBody(
               column(width = 12, 
                      box(width = NULL, 
                          DT::dataTableOutput('return_table'),
-                         style = "height:400px; overflow-y: scroll" 
+                         style = "height:350px; overflow-y: scroll" 
                          ))
               )
               ),
     
+    tabItem("daily",
+            fluidRow(
+              column(width = 12, 
+                     box(width = NULL, 
+                         DT::dataTableOutput('return_daily_table'),
+                         style = "height:700px; overflow-y: scroll" 
+                     ))
+              )
+    ),
+    
     tabItem("risk",
             fluidRow(
               column(width = 12, height = 300,
-                     box(width = NULL, 
+                     box(title = 'Histogram of Daily Return',
+                         width = NULL, 
                          plotlyOutput('histogram')
                      )),
               column(width = 12, height = 300,
@@ -65,15 +76,21 @@ dashboardBody(
               column(width = 12, 
                      box(width = NULL, 
                          plotlyOutput('wts_his', height = 350)
-                         )),
-              column(width = 12, 
-                     box(width = NULL, 
-                         DT::dataTableOutput('wts_table'),
-                         style = "height:400px; overflow-y: scroll" 
-                     ))
-              ),
-            
-            
+                     )),
+              
+              tabBox(
+                width = 12,
+                
+                tabPanel("Histrocial Weight",
+                         div(style = 'overflow-y:scroll;height:350px;',
+                             DT::dataTableOutput('wts_table'))
+                         ),
+                tabPanel("Turnover", 
+                         div(style = 'overflow-y:scroll;height:350px;',
+                             DT::dataTableOutput('to_table'))
+                         )
+              )
+              )
     ),
     
     tabItem("raw",
@@ -83,7 +100,7 @@ dashboardBody(
                          downloadButton("downloadData", "Download Data"),
                          withSpinner(tableOutput('raw_data')),
                          style = "height:800px; overflow-y: scroll" 
-                     )),
+                     ))
             )
     ),
     
