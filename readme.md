@@ -1,13 +1,10 @@
 # Global Dynamic Asset Allocation by Henry
 shiny for Global Dynamic Asset Allocation 
 
-To run the project either fork/download the files and run the **app.R**-file, or in R run
-```{r}
-shiny::runGitHub('GDAA_dashboard', 'hyunyulhenry')
-```
+To run the project either fork/download the files and run the **app.R**-file
+
 In order to run the project properly, you need to have the following packages installed.
 
-Required package
 ```{r}
 library(DT)
 library(quadprog)
