@@ -81,7 +81,7 @@ dashboardBody(
               tabBox(
                 width = 12,
                 
-                tabPanel("Histrocial Weight",
+                tabPanel("Historical Weight",
                          div(style = 'overflow-y:scroll;height:350px;',
                              DT::dataTableOutput('wts_table'))
                          ),
