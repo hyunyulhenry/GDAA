@@ -26,4 +26,5 @@ library(shiny)
 library(plotly)
 library(shinydashboard)
 library(shinycssloaders)
+library(forcats)
 ```
