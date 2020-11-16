@@ -85,8 +85,8 @@ output$to_table = DT::renderDataTable({
     set_names(c('Date', 'Turnover (%)')) %>%
     mutate_if(is.numeric, list(~round(., 4) * 100)) %>%
     arrange(desc(Date))  %>%
-    datatable(rownames = FALSE, 
-              options = list(dom = 't',
+    datatable(rownames = FALSE, extensions = 'Buttons',
+              options = list(dom = 'tB',
                              buttons = c('copy', 'csv', 'excel'),
                              pageLength = 1000000)
     )
@@ -131,7 +131,7 @@ output$risk_table = DT::renderDataTable({
     mutate(Index = rownames(.)) %>%
     select(Index, Value) %>%
     datatable(rownames = FALSE,             
-              options = list(dom = 'B', pageLength = 1000000,
+              options = list(dom = 't', pageLength = 1000000,
                              columnDefs = list(list(className = 'dt-right', targets = 1))
               )
     )
