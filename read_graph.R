@@ -1,32 +1,8 @@
-numeric_to_perc = function(number) {
-  number %>% round(., 4) %>%
-    multiply_by(., 100) %>% paste(., '%')
-}
-
-return_period = function() {
-
-  t1 = input$date[[1]] %>% as.character()
-  t2 = input$date[[2]] %>% as.character()
-
-  df = data$net[paste0(t1, "::", t2)]
-
-  pr = input$tz
-  period = paste0('apply.', pr)
-
-  df_mod = df %>%
-    get(period)(., Return.cumulative) %>%
-    fortify.zoo() %>%
-    mutate(Index = str_sub(Index, 1, 7))
-
-  return(df_mod)
-
-}
-
 output$cum_graph = renderPlotly({
   
-  # df = return_pr()
+  req(input$date[[2]])
   
-  df = data$net[paste0(input$date[[1]], "::", input$date[[2]])]
+  df = return_selected()
   
   # return graph
   df_ret = df %>% 
@@ -85,10 +61,7 @@ output$wts = renderPlotly({
 
 output$wts_his = renderPlotly({
   
-  t1 = input$date[[1]] %>% as.character()
-  t2 = input$date[[2]] %>% as.character()
-  
-  df = data$wts[paste0(t1, "::", t2)]
+  df = data$wts
   nm = colnames(df)  
 
   p = df %>% fortify.zoo() %>% gather(name, weight, -Index) %>% 
@@ -126,17 +99,12 @@ output$period_graph = renderPlotly({
 
 output$histogram = renderPlotly({
   
-  req(input$tz)
+  req(input$date[[2]])
   
-  t1 = input$date[[1]] %>% as.character()
-  t2 = input$date[[2]] %>% as.character()
-  
-  df = data$net[paste0(t1, "::", t2)] 
+  df = return_selected()
   # fit = density(df$Returns)
   
   df %>% fortify.zoo() %>%
     plot_ly(x = ~Returns, type = "histogram", name = "Histogram") 
-    
-    
   
 })

@@ -11,10 +11,8 @@ output$date = renderUI({
 output$tz = renderUI({
   radioGroupButtons(
     inputId = "tz",
-    label = "Select a period",
     choices = list("Year" = 'yearly',
-                   "Quarter" = 'quarterly',
-                   "Month" = 'monthly'
+                   "Quarter" = 'quarterly'
     ),
     checkIcon = list(
       yes = tags$i(class = "fa fa-check-square", 

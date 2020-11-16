@@ -30,29 +30,27 @@ output$recent = DT::renderDataTable({
 
 output$return_table = DT::renderDataTable({
   
-  req(input$tz)
+  req(input$date[[1]])
   
-  df_mod = return_period()
+  data$net %>% apply.monthly(., Return.cumulative) %>%
+    table.CalendarReturns(digits =2, geometric = TRUE) %>%
+    dplyr::rename('YTD' = 'Returns') %>%
+    arrange(desc(rownames(.))) %>%
+    datatable(rownames = TRUE, 
+              options = list(dom = 't',
+                             pageLength = 1000000
+              ) 
+    ) %>%
+    formatStyle(columns = c("YTD"), fontWeight = 'bold')
   
-  df_mod %>%
-    mutate(Returns = multiply_by(round(Returns, 4), 100)) %>%
-    arrange(desc(Index)) %>%
-    set_colnames(c('Date', 'Return (%)')) %>%
-    datatable(rownames = FALSE, 
-              options = list(dom = 'tB',
-                             pageLength = 1000000)
-                             
-              )
+  
 })
 
 output$return_daily_table = DT::renderDataTable({
   
-  req(input$tz)
+  req(input$date[[2]])
   
-  t1 = input$date[[1]] %>% as.character()
-  t2 = input$date[[2]] %>% as.character()
-  
-  df = data$net[paste0(t1, "::", t2)]
+  df = return_selected()
   
   df %>%
     fortify.zoo() %>%
@@ -95,8 +93,6 @@ output$to_table = DT::renderDataTable({
   
 })
 
-
-
 output$raw_data = function() {
   
   data$price %>% fortify.zoo(name = 'Date') %>%
@@ -119,10 +115,9 @@ output$downloadData = downloadHandler(
 
 output$risk_table = DT::renderDataTable({
   
-  t1 = input$date[[1]] %>% as.character()
-  t2 = input$date[[2]] %>% as.character()
+  req(input$date[[2]])
   
-  df = data$net[paste0(t1, "::", t2)]
+  df = return_selected()
   
   list(
     'Cumulative Return' = Return.cumulative(df) %>% numeric_to_perc(),

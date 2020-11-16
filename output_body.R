@@ -32,16 +32,16 @@ dashboardBody(
     ),
     
     tabItem("returns",
-            uiOutput('tz'),
             fluidRow(
               column(width = 12, 
                      box(width = NULL, 
-                         plotlyOutput('period_graph', height = 300)
+                         uiOutput('tz'),
+                         plotlyOutput('period_graph', height = 250)
                      )),
               column(width = 12, 
                      box(width = NULL, 
                          DT::dataTableOutput('return_table'),
-                         style = "height:350px; overflow-y: scroll" 
+                         style = "height:400px; overflow-y: scroll" 
                          ))
               )
               ),
