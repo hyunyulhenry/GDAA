@@ -38,7 +38,7 @@ output$cum_graph = renderPlotly({
   
   subplot(list(p1, p2), nrows = 2, heights = c(0.8, 0.2), margin = 0, 
           shareX = TRUE, titleX = FALSE) %>%
-    layout(yaxis = list(title = "Return (%)"), yaxis2 = list(title = "Drawown (%)")) %>%
+    layout(yaxis = list(title = "Return (%)"), yaxis2 = list(title = "Drawdown (%)")) %>%
     layout(yaxis = list(hoverformat = ".2f", showticklabels = T))
   
 })
