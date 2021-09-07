@@ -1,0 +1,1 @@
+https://dmmr-ten.s3.ap-northeast-2.amazonaws.com/db.Rds

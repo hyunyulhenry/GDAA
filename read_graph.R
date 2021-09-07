@@ -5,38 +5,38 @@ output$cum_graph = renderPlotly({
   df = return_selected()
   
   # return graph
-  df_ret = df %>% 
+  df_ret = df %>%
     fortify.zoo() %>%
     mutate_at(vars(-Index), list(~cumprod(1+.) - 1)) %>%
     mutate(Returns =  multiply_by(Returns, 100))
-  
+
   # drawdown graph
   df_dd = df %>%
     Drawdowns() %>%
     fortify.zoo() %>%
     mutate(Returns =  multiply_by(Returns, 100))
-  
-  
-  p1 = df_ret %>% 
+
+
+  p1 = df_ret %>%
     plot_ly(
-      x = ~Index, 
-      y = ~Returns, 
-      type = 'scatter', 
-      mode = 'none', 
+      x = ~Index,
+      y = ~Returns,
+      type = 'scatter',
+      mode = 'none',
       fill = 'tozeroy',
       showlegend = F) %>% layout(yaxis = list(showticklabels = F))
-  
-  p2 = df_dd %>% 
+
+  p2 = df_dd %>%
     plot_ly(
-      x = ~Index, 
-      y = ~Returns, 
-      type = 'scatter', 
-      mode = 'none', 
+      x = ~Index,
+      y = ~Returns,
+      type = 'scatter',
+      mode = 'none',
       fill = 'tonexty',
       showlegend = F) %>% layout(yaxis = list(showticklabels = F))
-  
-  
-  subplot(list(p1, p2), nrows = 2, heights = c(0.8, 0.2), margin = 0, 
+
+
+  subplot(list(p1, p2), nrows = 2, heights = c(0.8, 0.2), margin = 0,
           shareX = TRUE, titleX = FALSE) %>%
     layout(yaxis = list(title = "Return (%)"), yaxis2 = list(title = "Drawdown (%)")) %>%
     layout(yaxis = list(hoverformat = ".2f", showticklabels = T))

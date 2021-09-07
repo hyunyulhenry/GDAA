@@ -14,7 +14,7 @@ output: html_document
 
 **ETC**
 - Use a adjusted stock price that includes dividends
-- Buy / sell commission 30bp
+- Buy / sell commission 20bp
 - Rebalancing by the end of the month
 
 **Universe**

@@ -9,9 +9,9 @@ dashboardBody(
     tabItem("dashboard",
             fluidRow(
               column(width = 12, height = 300,
-                     box(width = NULL, 
-                         withSpinner(plotlyOutput('cum_graph')
-                                     ))),
+                     box(width = NULL,
+                         withSpinner(plotlyOutput('cum_graph'))
+                         )),
               column(width = 6, 
                      box(
                        title = 'Portfolio Weight',
@@ -111,7 +111,7 @@ dashboardBody(
     ),
     
     tabItem("profile",
-            includeMarkdown('profile.Rmd')
+            htmlOutput('profile')
             
     )
   )

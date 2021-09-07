@@ -22,5 +22,3 @@ output$tz = renderUI({
                   style = "color: steelblue"))
   )
 })
-
-
