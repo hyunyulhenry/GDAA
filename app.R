@@ -16,6 +16,7 @@ library(plotly)
 library(shinydashboard)
 library(shinycssloaders)
 library(forcats)
+library(metathis)
 
 ui <- dashboardPage(
   
@@ -54,3 +55,5 @@ server <- function(input, output) {
 }
 
 shinyApp(ui, server)
+
+# rsconnect::deployApp()
