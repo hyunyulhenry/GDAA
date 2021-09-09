@@ -10,6 +10,14 @@ dashboardSidebar(
     menuItem("Weight", tabName = "weight", icon = icon("weight")),
     menuItem("Raw Data", tabName = "raw", icon = icon("database")),
     menuItem("Strategy", tabName = "strategy", icon = icon("info-circle")),
-    menuItem("Profile", tabName = "profile", icon = icon("address-card"))
+    menuItem("Profile", tabName = "profile", icon = icon("address-card")),
+    br(),
+    br(),
+    tags$div(class="f_fixed",
+             a(href="https://doomoolmori.com/",
+               img(src = 'dmmr.png',
+                   style="width: 160px; display: block; margin-left: auto; margin-right: auto;" )
+             )
+    )
   )
 )

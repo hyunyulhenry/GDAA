@@ -5,3 +5,4 @@
 rsconnet/
 admin.R
 down_db.R
+.httr-oauth
