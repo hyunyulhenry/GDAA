@@ -2,7 +2,7 @@
 .Rhistory
 .RData
 .Ruserdata
-rsconnet/
+rsconnect
 admin.R
 down_db.R
 .httr-oauth

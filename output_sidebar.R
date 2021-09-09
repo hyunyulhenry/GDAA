@@ -12,7 +12,6 @@ dashboardSidebar(
     menuItem("Strategy", tabName = "strategy", icon = icon("info-circle")),
     menuItem("Profile", tabName = "profile", icon = icon("address-card")),
     br(),
-    br(),
     tags$div(class="f_fixed",
              a(href="https://doomoolmori.com/",
                img(src = 'dmmr.png',
