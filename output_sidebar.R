@@ -14,6 +14,7 @@ dashboardSidebar(
     br(),
     tags$div(class="f_fixed",
              a(href="https://doomoolmori.com/",
+               target="_blank",
                img(src = 'dmmr.png',
                    style="width: 160px; display: block; margin-left: auto; margin-right: auto;" )
              )
