@@ -10,7 +10,7 @@ dashboardBody(
       title = "Global Dynamic Asset Allocation",
       description = "Quant Based GDAA by Doomoolmori",
       url = "https://doomoolmori.shinyapps.io/gdaa",
-      image = "https://github.com/hyunyulhenry/GDAA/blob/main/dmmr.png?raw=true"
+      image = "https://github.com/hyunyulhenry/GDAA/blob/main/www/chameleon.jpg?raw=true"
     ),
   
   tabItems(
